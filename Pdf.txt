@@ -1,0 +1,30 @@
+How it decides WORKING vs NOT WORKING
+
+WORKING when it can open the stream and read valid frames repeatedly.
+
+A frame is considered valid if:
+
+It's non-empty and of reasonable resolution.
+
+Grayscale pixel variance exceeds a threshold (avoids reporting a black/frozen frame as working).
+
+If no valid frames are seen for READ_FRAME_TIMEOUT_SEC seconds, the script tries reconnects. If reconnects fail after RETRIES, it logs NOT WORKING.
+
+Tips to increase reliability
+
+Use cv2.CAP_FFMPEG backend (works better for many RTSP cameras). You can remove that flag if it's not available.
+
+Tune CONNECT_TIMEOUT_SEC, READ_FRAME_TIMEOUT_SEC, and VARIANCE_THRESHOLD for your camera and network.
+
+Add a logging handler to send email/Slack/webhook or toggle a GPIO (for edge devices) when NOT WORKING.
+
+If your camera requires HTTP(s) snapshot URLs, use requests.get(snapshot_url, timeout=...) and validate the image bytes similarly.
+
+If you want, I can:
+
+Modify this to run as a systemd service / Windows Service.
+
+Add email / Telegram / webhook alerts when status flips.
+
+Accept the camera URL and options from the command line (argparse).
+Tell me which one and I’ll add it directly.
