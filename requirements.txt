@@ -1,3 +1,0 @@
-streamlit
-opencv-python==4.7.0
-numpy==1.25.0
