@@ -1,7 +1,0 @@
-streamlit==1.30.0
-numpy==1.26.2
-opencv-python==4.8.1.78
-rich==10.14.0,<14   # must be less than 14 to satisfy Streamlit
-markdown-it-py==4.0.0
-mdurl==0.1.2
-pygments==2.19.2
